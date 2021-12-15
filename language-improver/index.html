@@ -33,7 +33,20 @@
   <br>
   <img src="./images/caption.png">
   <br>
-<div id="app" align="center"><br> <table><tbody><tr><td align="center"><textarea placeholder="Engwish goes here..." width="100px"></textarea></td> <td align="center" width="10px" style="vertical-align: top;"></td> <td align="center"><textarea placeholder="" width="100px"></textarea></td><td></td></tr></tbody></table></div>
+<div id="app" align="center"><br> <table>
+        <tr>
+            <td align=center>
+                <textarea v-model="startInput" placeholder="Engwish goes here..." width=100px v-on:input="handleChange"></textarea>
+            </td>
+            <td align=center style="vertical-align:top;" width=10px>
+                
+            </td>
+            <td align=center>
+                <textarea v-model="finalInput" placeholder="" width=100px></textarea>
+            <td>
+        </tr>
+    </table>
+	</div>
   
 
   
