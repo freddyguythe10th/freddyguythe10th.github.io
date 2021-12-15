@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Language Improver</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="icon" href="./images/favicon.png">
+    <style>
+        body{
+            background-color:#d7d7d7;
+        }
+        textarea{
+            width: 500px;
+            height: 325px;
+            max-width:500px;
+            min-width:500px;
+            max-height:325px;
+            min-height:325px;
+            font-size:20px;
+            resize:none;
+        }
+        button{
+            font-size:25px;
+            text-align:center;
+            border:0px;
+        }
+    </style>
+</head>
+<body align="center">
+  
+  <!-- h1 align=center>LANGUAGE IMPROVER</h1 !-->
+  <img src="./images/logo.png" align="center">
+  <br>
+  <br>
+  <img src="./images/caption.png">
+  <br>
+<div id="app" align="center"><br> <table><tbody><tr><td align="center"><textarea placeholder="Engwish goes here..." width="100px"></textarea></td> <td align="center" width="10px" style="vertical-align: top;"></td> <td align="center"><textarea placeholder="" width="100px"></textarea></td><td></td></tr></tbody></table></div>
+  
+
+  
+<script type="text/javascript">
+    var hehe = new Vue({
+      el: '#app',
+      data: { 
+      		startInput:"",
+          	finalInput:"",
+      },
+      methods:{
+            myFunction: function () {
+            	this.finalInput = this.startInput.toLowerCase();
+                this.finalInput = this.finalInput.replace("r","w");
+				this.finalInput = this.finalInput.replace("l","w");
+				this.finalInput = this.finalInput.replace("s ","sh ");
+				this.finalInput = this.finalInput.replace("s.","sh.");
+				this.finalInput = this.finalInput.replace("s,","sh,");
+				if(this.startInput == "his brother has dark hair" || this.startInput == "His brother has dark hair"){
+				this.finalInput = this.finalInput + " *uwu*";
+				}
+				console.log(this.finalInput);
+				hehe.updateAll();
+            },
+            updateAll: function() {
+                this.finalInput = this.finalInput.replace("r","w");
+				this.finalInput = this.finalInput.replace("l","w");
+				this.finalInput = this.finalInput.replace("s ","sh ");
+				this.finalInput = this.finalInput.replace("s.","sh.");
+				this.finalInput = this.finalInput.replace("s,","sh,");
+				hehe.updateAll();
+            },
+            handleChange() {
+                console.log('Updating Text...')
+                this.myFunction();
+            }
+      }
+    });
+</script>
+</body></html>
