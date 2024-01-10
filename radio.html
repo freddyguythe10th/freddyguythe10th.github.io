@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cat FM Radio</title>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -23,14 +24,20 @@
             margin-top: 0;
         }
 
-        audio {
-            width: 80%;
+        #audioContainer {
+            width: 60%; /* Adjust the width as needed */
             margin: 20px auto;
-            display: block;
+            position: relative;
         }
 
         #songInfo {
-            margin: 10px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -38,39 +45,21 @@
     <header>
         <h1>Cat FM Radio</h1>
     </header>
-    <audio id="audioPlayer" controls>
-        <source src="http://forums-trailers.gl.at.ply.gg:62920/main" type="audio/mpeg">
-        Your browser does not support the audio tag.
-    </audio>
-    <div id="songInfo"></div>
+    <div id="audioContainer">
+        <audio id="audioPlayer" controls>
+            <source src="http://forums-trailers.gl.at.ply.gg:62920/main" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
+        <div id="songInfo">Cat FM Radio</div>
+    </div>
 
+    <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
     <script>
-        // Function to update song information
-        function updateSongInfo() {
-            var audioPlayer = document.getElementById('audioPlayer');
-            var songInfoElement = document.getElementById('songInfo');
-
-            // Check if metadata is supported
-            if ('metadata' in audioPlayer) {
-                audioPlayer.addEventListener('loadedmetadata', function() {
-                    var metadata = audioPlayer.metadata;
-                    
-                    if (metadata) {
-                        var title = metadata.get('StreamTitle');
-                        if (title) {
-                            var parts = title.split('-');
-                            var author = parts[0].trim();
-                            var songName = parts[1].trim();
-
-                            songInfoElement.textContent = 'Now Playing: ' + songName + ' by ' + author;
-                        }
-                    }
-                });
-            }
-        }
-
-        // Initial call to update song information
-        updateSongInfo();
+        document.addEventListener('DOMContentLoaded', function () {
+            const player = new Plyr('#audioPlayer', {
+                controls: ['play', 'volume'],
+            });
+        });
     </script>
 </body>
 </html>
