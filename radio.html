@@ -28,15 +28,49 @@
             margin: 20px auto;
             display: block;
         }
+
+        #songInfo {
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Cat FM Radio</h1>
     </header>
-    <audio controls>
+    <audio id="audioPlayer" controls>
         <source src="http://forums-trailers.gl.at.ply.gg:62920/main" type="audio/mpeg">
         Your browser does not support the audio tag.
     </audio>
+    <div id="songInfo"></div>
+
+    <script>
+        // Function to update song information
+        function updateSongInfo() {
+            var audioPlayer = document.getElementById('audioPlayer');
+            var songInfoElement = document.getElementById('songInfo');
+
+            // Check if metadata is supported
+            if ('metadata' in audioPlayer) {
+                audioPlayer.addEventListener('loadedmetadata', function() {
+                    var metadata = audioPlayer.metadata;
+                    
+                    if (metadata) {
+                        var title = metadata.get('StreamTitle');
+                        if (title) {
+                            var parts = title.split('-');
+                            var author = parts[0].trim();
+                            var songName = parts[1].trim();
+
+                            songInfoElement.textContent = 'Now Playing: ' + songName + ' by ' + author;
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initial call to update song information
+        updateSongInfo();
+    </script>
 </body>
 </html>
